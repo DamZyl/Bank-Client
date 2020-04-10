@@ -1,0 +1,21 @@
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.left {
+  width: 250px;
+  height: 100vh;
+  float: left;
+}
+
+.right {
+  width: calc(100% - 250px);
+  height: 100vh;
+  background: wheat;
+  float: right;
+  text-align: center;
+  overflow: auto;
+  background-color: white;
+  color: grey;
+}

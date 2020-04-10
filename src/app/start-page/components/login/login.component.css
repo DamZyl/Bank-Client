@@ -16,3 +16,12 @@ mat-card-content * {
 mat-card-actions {
   text-align: center;
 }
+
+p {
+  color: black;
+  text-align: center;
+}
+
+a {
+  color: blue;
+}

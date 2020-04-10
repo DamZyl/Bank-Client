@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {AuthService} from '../_shared/services/auth.service';
+import {CustomerService} from '../_shared/services/customer.service';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -22,7 +23,8 @@ import {AuthService} from '../_shared/services/auth.service';
     MatButtonModule,
   ],
   providers: [
-    AuthService
+    AuthService,
+    CustomerService
   ],
 })
 export class StartPageModule { }

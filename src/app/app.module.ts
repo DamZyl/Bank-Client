@@ -10,6 +10,8 @@ import { CustomerModule } from './customer/customer.module';
 import { EmployeeModule } from './employee/employee.module';
 import { StartPageModule } from './start-page/start-page.module';
 import {HttpClientModule} from '@angular/common/http';
+import {ErrorInterceptorProvider} from './_shared/interceptors/error.interceptor';
+import {JwtInterceptorProvider} from './_shared/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import {HttpClientModule} from '@angular/common/http';
     StartPageModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ErrorInterceptorProvider,
+    JwtInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
