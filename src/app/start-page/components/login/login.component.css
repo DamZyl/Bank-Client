@@ -1,0 +1,18 @@
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+mat-card-content * {
+  width: 100%;
+}
+
+mat-card-actions {
+  text-align: center;
+}
