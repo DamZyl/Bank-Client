@@ -5,5 +5,6 @@ export class Transaction {
   accountId: Guid;
   date: Date;
   transactionType: string;
+  description: string;
   value: number;
 }

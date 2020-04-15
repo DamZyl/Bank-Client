@@ -1,5 +1,5 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav mode="side" #sidenav opened position="start">
+  <mat-sidenav mode="side" #sidenav position="start">
     <mat-nav-list>
       <mat-divider></mat-divider>
       <a mat-list-item [routerLink]="['/admin', 'customers']"> Customers </a>
@@ -15,7 +15,7 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      Bank
+        Bank
       <span class="toolbar-spacer"></span>
       <a [matMenuTriggerFor]="beforeMenu">User Name</a>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -23,8 +23,8 @@
         <button mat-menu-item>Logout</button>
       </mat-menu>
     </mat-toolbar>
-    <mat-card class="main-content">
+    <div class="main-content">
       <router-outlet></router-outlet>
-    </mat-card>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,6 +1,58 @@
-<p>
-  {{accountDetail.id}}, {{accountDetail.customerId}}, {{accountDetail.accountNumber}}, {{accountDetail.balance}}, {{accountDetail.transactionCount}}
-</p>
-<p *ngFor="let transaction of accountDetail.transactions">
-  {{transaction.date | date:'yyyy-MM-dd'}}, {{transaction.transactionType}}, {{transaction.value}}
-</p>
+<div class="container">
+    <mat-card class="info">
+      <mat-card-header>
+        <mat-card-title>
+          Account: {{accountDetail.accountNumber}}
+        </mat-card-title>
+        <span class="toolbar-spacer"></span>
+        <button class="basic" type="submit" mat-raised-button [routerLink]="['/admin', 'accounts']">
+          <mat-icon aria-label="Return">keyboard_return</mat-icon>Return
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Owner: {{accountDetail.customerId}}</p>
+        <p>Transaction: {{accountDetail.transactionCount}}</p>
+        <p>Balance: {{accountDetail.balance}}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="transactions">
+      <mat-card-header>
+        <mat-card-title>
+          Transactions
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="transactions">
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> Index </th>
+            <td mat-cell *matCellDef="let element; let i = index;">{{i + 1}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let element">{{element.date | date:'yyyy-MM-dd'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="transactionType">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let element">{{element.transactionType}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element">{{element.description}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef>Value</th>
+            <td mat-cell *matCellDef="let element">{{element.value}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+</div>
