@@ -1,1 +1,6 @@
-<p>customer works!</p>
+<p>
+  {{customer.id}}, {{customer.fullName}}, {{customer.email}}, {{customer.phoneNumber}}, {{customer.address}}, {{customer.city}}, {{customer.country}}, {{customer.accountCount}}
+</p>
+<p *ngFor="let account of customer.accounts">
+  {{account.id}}, {{account.customerId}}, {{account.accountNumber}}, {{account.balance}}
+</p>

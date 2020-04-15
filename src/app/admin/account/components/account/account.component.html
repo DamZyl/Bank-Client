@@ -1,1 +1,6 @@
-<p>account works!</p>
+<p>
+  {{accountDetail.id}}, {{accountDetail.customerId}}, {{accountDetail.accountNumber}}, {{accountDetail.balance}}, {{accountDetail.transactionCount}}
+</p>
+<p *ngFor="let transaction of accountDetail.transactions">
+  {{transaction.date | date:'yyyy-MM-dd'}}, {{transaction.transactionType}}, {{transaction.value}}
+</p>

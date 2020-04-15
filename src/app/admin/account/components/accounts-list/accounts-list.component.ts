@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Account} from '../../../../_shared/models/account';
+import {BankService} from '../../../../_shared/services/bank.service';
 
 @Component({
   selector: 'app-accounts-list',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accounts-list.component.css']
 })
 export class AccountsListComponent implements OnInit {
+  accounts: Account[];
 
-  constructor() { }
+  constructor(private bankService: BankService) { }
 
   ngOnInit(): void {
+    this.getAccounts();
   }
 
+  getAccounts() {
+    this.bankService.getBankInfo().subscribe(response => {
+      this.accounts = response.accounts;
+    }, error => {
+      console.log(error);
+    });
+  }
 }

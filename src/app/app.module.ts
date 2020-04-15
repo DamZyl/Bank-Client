@@ -30,7 +30,7 @@ import {JwtInterceptorProvider} from './_shared/interceptors/jwt.interceptor';
   ],
   providers: [
     ErrorInterceptorProvider,
-    JwtInterceptorProvider
+    // JwtInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

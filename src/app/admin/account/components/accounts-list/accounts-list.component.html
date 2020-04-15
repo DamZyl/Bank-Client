@@ -1,1 +1,6 @@
-<p>accounts-list works!</p>
+<p *ngFor="let account of accounts">
+  {{account.id}}, {{account.customerId}}, {{account.accountNumber}}, {{account.balance}}
+  <a [routerLink]="['/admin', 'accounts', 'detail', account.id]" mat-raised-button
+     color="primary">Details
+  </a>
+</p>

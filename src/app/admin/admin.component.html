@@ -1,9 +1,30 @@
-<div class="container-fluid" id="container">
-  <app-header></app-header>
-  <div class="left">
-    <app-navbar></app-navbar>
-  </div>
-  <div class="right">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="side" #sidenav opened position="start">
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/admin', 'customers']"> Customers </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/admin', 'employees']"> Employees </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/admin', 'accounts']"> Accounts </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      Bank
+      <span class="toolbar-spacer"></span>
+      <a [matMenuTriggerFor]="beforeMenu">User Name</a>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Edit profile</button>
+        <button mat-menu-item>Logout</button>
+      </mat-menu>
+    </mat-toolbar>
+    <mat-card class="main-content">
+      <router-outlet></router-outlet>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

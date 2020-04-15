@@ -1,1 +1,6 @@
-<p>customer-list works!</p>
+<p *ngFor="let customer of customers">
+  {{customer.id}}, {{customer.fullName}}, {{customer.email}}, {{customer.phoneNumber}}, {{customer.address}}, {{customer.city}}, {{customer.country}}, {{customer.accountCount}}
+  <a [routerLink]="['/admin', 'customers', 'detail', customer.id]" mat-raised-button
+     color="primary">Details
+  </a>
+</p>

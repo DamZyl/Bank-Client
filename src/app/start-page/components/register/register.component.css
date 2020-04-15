@@ -19,6 +19,15 @@ mat-card-title {
   text-align: center;
 }
 
+mat-card-subtitle {
+  width: 15%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  margin: 5% 5% 2% 5%;
+  border-bottom: 1px solid grey;
+}
+
 mat-card-actions {
   display: flex;
   justify-content: center;

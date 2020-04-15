@@ -1,1 +1,6 @@
-<p>employee-list works!</p>
+<p *ngFor="let employee of employees">
+  {{employee.id}}, {{employee.fullName}}, {{employee.email}}, {{employee.phoneNumber}}, {{employee.position}}
+  <a [routerLink]="['/admin', 'employees', 'detail', employee.id]" mat-raised-button
+     color="primary">Details
+  </a>
+</p>

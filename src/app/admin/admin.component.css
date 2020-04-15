@@ -1,21 +1,37 @@
-.container-fluid {
-  margin: 0;
-  padding: 0;
+mat-sidenav {
+  width: 280px;
+  padding:15px;
+}
+.mat-drawer {
+  background-color: #023075;
+  color:#fff
+}
+.main-content {
+  margin: 1%;
+  padding: 20px;
+  height: 84%;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
 }
 
-.left {
-  width: 250px;
-  height: 100vh;
-  float: left;
+.mat-icon-button ::ng-deep .mat-button-focus-overlay {
+  display: none;
 }
 
-.right {
-  width: calc(100% - 250px);
-  height: 100vh;
-  background: wheat;
-  float: right;
-  text-align: center;
-  overflow: auto;
-  background-color: white;
-  color: grey;
+a:hover {
+  cursor: pointer;
+}
+
+.mat-list-item {
+  color: white;
+}
+
+.mat-list-item:hover {
+  padding-left: 10px;
+  background: none;
+}
+
+.mat-divider {
+  border-top-color: white;
 }
