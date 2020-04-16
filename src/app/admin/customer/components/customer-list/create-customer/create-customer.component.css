@@ -1,0 +1,33 @@
+.column {
+  flex: 50%;
+  flex-direction: row;
+}
+
+mat-form-field {
+  width: 40%;
+  margin: 1% 5%;
+}
+
+.mat-dialog-title {
+  text-align: center;
+}
+
+h3 {
+  color: black;
+  font-weight: bold;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 1%;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+mat-dialog-actions * {
+  margin: 0 1%;
+}
+

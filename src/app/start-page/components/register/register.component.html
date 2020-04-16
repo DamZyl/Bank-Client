@@ -1,1 +1,59 @@
-<p>register works!</p>
+<div class="main-div">
+  <form [formGroup]="form" (submit)="register(form.value)">
+    <mat-card>
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-content>
+        <div class="column">
+          <h3>Personal data</h3>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="firstName" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="lastName" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Phone number</mat-label>
+            <input matInput formControlName="phoneNumber" type="text">
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <h3>Address</h3>
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input matInput formControlName="street" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Number</mat-label>
+            <input matInput formControlName="number" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>PostCode</mat-label>
+            <input matInput formControlName="postCode" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" type="text">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" mat-raised-button color="primary" [routerLink]="['/']">Register</button>
+        <button type="submit" mat-raised-button color="warn" [routerLink]="['/']">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

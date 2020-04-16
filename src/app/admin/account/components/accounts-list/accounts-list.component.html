@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+        Accounts
+    </mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <button type="submit" mat-raised-button color="primary" (click)="openDialog()">
+      <mat-icon aria-label="Add">add</mat-icon>Add account
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="search">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="accounts">
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> Index </th>
+        <td mat-cell *matCellDef="let element; let i = index;">{{i + 1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="customerId">
+        <th mat-header-cell *matHeaderCellDef>Customer</th>
+        <td mat-cell *matCellDef="let element">{{element.customerId}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="accountNumber">
+        <th mat-header-cell *matHeaderCellDef>Account</th>
+        <td mat-cell *matCellDef="let element">{{element.accountNumber}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef>Balance</th>
+        <td mat-cell *matCellDef="let element">{{element.balance}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <!--<button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>-->
+          <button mat-icon-button matTooltip="Click to show Detail" class="iconbutton" color="primary" (click)="getDetail(row)">
+            <mat-icon aria-label="Detail">info</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="deleteAccount(row)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>
