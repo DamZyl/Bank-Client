@@ -46,11 +46,7 @@ export class AccountsListComponent implements OnInit {
   }
 
   getDetail(account: any) {
-    this.accountService.getAccount(account.id).subscribe(response => {
-      this.router.navigate(['/admin', 'accounts', 'detail', account.id]);
-    }, error => {
-      console.log(error);
-    });
+    this.router.navigate(['/admin', 'accounts', 'detail', account.id]);
   }
 
   deleteAccount(account: any) {
@@ -71,7 +67,11 @@ export class AccountsListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateAccountComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log(data)
+      data => this.accountService.createAccount(data).subscribe(response => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      })
     );
   }
 }

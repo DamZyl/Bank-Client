@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {CreateCustomer} from '../../../../../_shared/models/createCustomer';
+import {UpdateCustomer} from '../../../../../_shared/models/updateCustomer';
 
 @Component({
   selector: 'app-update-customer',
@@ -13,7 +13,7 @@ export class UpdateCustomerComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<UpdateCustomerComponent>,
-              @Inject(MAT_DIALOG_DATA) data: CreateCustomer) { }
+              @Inject(MAT_DIALOG_DATA) data: UpdateCustomer) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({

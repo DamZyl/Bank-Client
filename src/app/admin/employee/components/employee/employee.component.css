@@ -1,0 +1,23 @@
+.info {
+  padding: 2em;
+  height: 25vh;
+}
+
+mat-card-header {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+p {
+  margin-left: 16px;
+}
+
+.basic {
+  background-color: gray;
+  color: #fff;
+}

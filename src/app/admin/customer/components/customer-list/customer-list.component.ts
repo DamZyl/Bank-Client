@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CreateCustomerComponent} from './create-customer/create-customer.component';
 import {UpdateCustomerComponent} from './update-customer/update-customer.component';
-import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer-list',
@@ -38,20 +37,15 @@ export class CustomerListComponent implements OnInit {
   }
 
   getDetail(customer: any) {
-    this.customerService.getCustomer(customer.id).subscribe(response => {
-      this.router.navigate(['/admin', 'customers', 'detail', customer.id]);
-    }, error => {
-      console.log(error);
-    });
+    this.router.navigate(['/admin', 'customers', 'detail', customer.id]);
   }
 
   deleteCustomer(customer: any) {
     this.customerService.deleteCustomer(customer.id).subscribe(response => {
-      console.log(response);
+      window.location.reload();
     }, error => {
       console.log(error);
     });
-    window.location.reload();
   }
 
   applyFilter(filterValue: string) {
@@ -67,11 +61,15 @@ export class CustomerListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateCustomerComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log(data)
+      data => this.customerService.createCustomer(data).subscribe(response => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      })
     );
   }
 
-  openEditDialog() {
+  openEditDialog(customer: any) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -79,8 +77,12 @@ export class CustomerListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(UpdateCustomerComponent, dialogConfig);
 
-    dialogRef.afterClosed().pipe(take(1)).subscribe(
-      data => console.log(data)
+    dialogRef.afterClosed().subscribe(
+      data => this.customerService.updateCustomer(customer.id, data).subscribe(response => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      })
     );
   }
 }

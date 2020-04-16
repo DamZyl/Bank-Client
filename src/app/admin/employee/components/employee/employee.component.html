@@ -1,3 +1,16 @@
-<p>
-  {{employee.id}}, {{employee.fullName}}, {{employee.email}}, {{employee.phoneNumber}}, {{employee.position}}
-</p>
+<mat-card class="info">
+  <mat-card-header>
+    <mat-card-title>
+      Employee: {{employee.fullName}}
+    </mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <button class="basic" type="submit" mat-raised-button [routerLink]="['/admin', 'employees']">
+      <mat-icon aria-label="Return">keyboard_return</mat-icon>Return
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Email: {{employee.email}}</p>
+    <p>Phone: {{employee.phoneNumber}}</p>
+    <p>Position: {{employee.position}}</p>
+  </mat-card-content>
+</mat-card>
