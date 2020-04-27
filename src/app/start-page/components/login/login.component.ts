@@ -10,8 +10,12 @@ import {AuthService} from '../../../_shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  role: string;
+  name: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -22,9 +26,16 @@ export class LoginComponent implements OnInit {
 
   login(value) {
     this.authService.login(value).subscribe(response => {
-      console.log(response);
+      this.role = this.authService.getRole();
+      if (this.role === 'Admin') {
+          this.router.navigate(['/admin']);
+      } else if (this.role === 'Employee') {
+          this.router.navigate(['/employee']);
+      } else {
+        this.router.navigate(['/customer']);
+      }
     }, error => {
-      console.log(error);
+      window.alert(error);
     });
   }
 }

@@ -8,6 +8,7 @@ import {Account} from '../../../../_shared/models/account';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CreateAccountComponent} from './create-account/create-account.component';
 import {take} from 'rxjs/operators';
+import {Guid} from '../../../../_shared/models/guid';
 // import {MatSort} from '@angular/material/sort';
 
 @Component({

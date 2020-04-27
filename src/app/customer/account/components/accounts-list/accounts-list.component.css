@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+  text-align: center;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
+
+mat-card {
+  height: 85vh;
+}
+
+mat-card-header {
+  justify-content: center;
+  align-items: center;
+}
+
+.search .mat-form-field {
+  width: calc(100% - 16px);
+  margin-left: 16px;
+}

@@ -5,6 +5,9 @@ import {Login} from '../models/login';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Token} from '../models/token';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Guid} from '../models/guid';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +16,10 @@ export class AuthService {
   baseUrl = `${environment.baseApiUrl}auth/`;
   private currentUserSubject: BehaviorSubject<Token>;
   public currentUser: Observable<Token>;
+  jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
     this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -23,19 +28,35 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  // FIX PROBLEM WITH ERROR MESSAGE
   login(model: Login) {
     return this.http.post<Token>(`${this.baseUrl}login`, model)
       .pipe(map(token => {
         localStorage.setItem('currentUser', JSON.stringify(token));
         this.currentUserSubject.next(token);
-        return token;
       }));
   }
 
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    //this.router.navigate(['/login']);
+    this.router.navigate(['']);
+  }
+
+  getRole() {
+    const decodedToken = this.jwtHelper.decodeToken(JSON.parse(localStorage.getItem('currentUser')));
+    const tmp = JSON.stringify(decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
+    return tmp.substring(1, tmp.length - 1);
+  }
+
+  getUsername() {
+    const decodedToken = this.jwtHelper.decodeToken(JSON.parse(localStorage.getItem('currentUser')));
+    const tmp = JSON.stringify(decodedToken.unique_name);
+    return tmp.substring(1, tmp.length - 1);
+  }
+
+  getUserId() {
+    const decodedToken = this.jwtHelper.decodeToken(JSON.parse(localStorage.getItem('currentUser')));
+    const tmp = JSON.stringify(decodedToken.sub);
+    return Guid.parse(tmp.substring(1, tmp.length - 1));
   }
 }

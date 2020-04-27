@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../_shared/services/auth.service';
 
 @Component({
   selector: 'app-customer',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+  name: string;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.getUsername();
   }
 
+  getUsername() {
+    this.name = this.authService.getUsername();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

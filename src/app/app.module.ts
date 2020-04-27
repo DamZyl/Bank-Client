@@ -12,6 +12,7 @@ import { StartPageModule } from './start-page/start-page.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ErrorInterceptorProvider} from './_shared/interceptors/error.interceptor';
 import {JwtInterceptorProvider} from './_shared/interceptors/jwt.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,12 @@ import {JwtInterceptorProvider} from './_shared/interceptors/jwt.interceptor';
     CustomerModule,
     EmployeeModule,
     StartPageModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule
   ],
   providers: [
-    ErrorInterceptorProvider,
-    // JwtInterceptorProvider
+    JwtInterceptorProvider,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
