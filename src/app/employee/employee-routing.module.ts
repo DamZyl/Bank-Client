@@ -1,12 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminComponent} from '../admin/admin.component';
 import {EmployeeComponent} from './employee.component';
+import {RoleGuardService} from '../_shared/services/role-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: EmployeeComponent
+    component: EmployeeComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'Employee'
+    }
   }
 ];
 

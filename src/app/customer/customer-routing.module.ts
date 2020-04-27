@@ -1,11 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CustomerComponent} from './customer.component';
+import {RoleGuardService} from '../_shared/services/role-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: CustomerComponent
+    component: CustomerComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'Customer'
+    }
   }
 ];
 

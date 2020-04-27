@@ -42,6 +42,16 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
+  isAuthenticated(): boolean {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser === null) {
+      return false;
+    } else {
+      const token = JSON.parse(localStorage.getItem('currentUser'));
+      return !this.jwtHelper.isTokenExpired(token);
+    }
+  }
+
   getRole() {
     const decodedToken = this.jwtHelper.decodeToken(JSON.parse(localStorage.getItem('currentUser')));
     const tmp = JSON.stringify(decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
