@@ -1,1 +1,28 @@
-<p>employee works!</p>
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="side" #sidenav position="start">
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/employee', 'customers']"> Customers </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/employee', 'accounts']"> Accounts </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      Bank
+      <span class="toolbar-spacer"></span>
+      <a [matMenuTriggerFor]="beforeMenu">{{name}}</a>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Edit profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

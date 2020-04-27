@@ -1,0 +1,51 @@
+<div class="container">
+  <mat-card class="info">
+    <mat-card-header>
+      <mat-card-title>
+        Customer: {{customer.fullName}}
+      </mat-card-title>
+      <span class="toolbar-spacer"></span>
+      <button class="basic" type="submit" mat-raised-button [routerLink]="['/employee', 'customers']">
+        <mat-icon aria-label="Return">keyboard_return</mat-icon>Return
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Email: {{customer.email}}</p>
+      <p>Phone: {{customer.phoneNumber}}</p>
+      <p>Address: {{customer.address}}</p>
+      <p>City: {{customer.city}}</p>
+      <p>Country: {{customer.country}}</p>
+      <p>Account: {{customer.accountCount}}</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="accounts">
+    <mat-card-header>
+      <mat-card-title>
+        Accounts
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="accounts">
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef> Index </th>
+          <td mat-cell *matCellDef="let element; let i = index;">{{i + 1}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="accountNumber">
+          <th mat-header-cell *matHeaderCellDef>Number</th>
+          <td mat-cell *matCellDef="let element">{{element.accountNumber}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <td mat-cell *matCellDef="let element">{{element.balance}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
