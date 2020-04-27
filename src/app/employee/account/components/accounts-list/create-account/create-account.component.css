@@ -1,0 +1,12 @@
+mat-dialog-content * {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  text-align: center;
+  justify-content: center;
+}
+
+mat-dialog-actions * {
+  margin: 0 1%;
+}

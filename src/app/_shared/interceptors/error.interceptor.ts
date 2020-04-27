@@ -3,16 +3,25 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 export class ErrorInterceptor implements HttpInterceptor {
-  intercept(
-    req: import('@angular/common/http').HttpRequest<any>,
-    next: import('@angular/common/http').HttpHandler
-  ): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
-    return next.handle(req).pipe(
-      catchError(error => {
-        const serverError = error.error;
-        return throwError(serverError.message);
-      })
-    );
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    return next.handle(request)
+      .pipe(
+        retry(1),
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage: string;
+
+          if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+          } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.error.code}\nMessage: ${error.error.message}`;
+          }
+
+          return throwError(errorMessage);
+        })
+      );
   }
 }
 
